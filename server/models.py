@@ -7,8 +7,8 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 from flask_mail import Mail, Message
 from sqlalchemy_serializer import SerializerMixin
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 

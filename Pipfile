@@ -14,8 +14,8 @@ sqlalchemy = "*"
 sqlalchemy-serializer = "*"
 faker = "*"
 python-dotenv = "*"
-gunicorn = "*"
 flask-migrate = "*"
+gunicorn = "*"
 
 [dev-packages]
 pytest = "*"

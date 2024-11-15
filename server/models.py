@@ -1,23 +1,23 @@
 
 import random
 import string
+from datetime import datetime
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from datetime import datetime
-from sqlalchemy.exc import IntegrityError
 from flask_mail import Mail, Message
+
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy_serializer import SerializerMixin
+
 from dotenv import load_dotenv
 load_dotenv()
 
 import os
 
-
 db =SQLAlchemy()
 bcrypt=Bcrypt()
 mail=Mail()
-
-
 
 # User Model for Authentication
 class User(db.Model, SerializerMixin):

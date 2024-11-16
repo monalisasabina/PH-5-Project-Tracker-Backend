@@ -233,7 +233,7 @@ class Users(Resource):
 
         try: 
             page = int(request.args.get('page',1)) #defaults to page number 1
-            per_page = int(request.args.get('per_page',10)) #defaults to listing 10 users per page
+            per_page = int(request.args.get('per_page',20)) #defaults to listing 10 users per page
 
             # Limit maximum users per page
             per_page = min(per_page,100)
@@ -383,7 +383,7 @@ class Projects(Resource):
         try:
 
             page = int(request.args.get('page',1))
-            per_page = int(request.args.get('per_page',10))
+            per_page = int(request.args.get('per_page',20))
 
             per_page = min(per_page,100)
 
@@ -522,7 +522,7 @@ class Cohorts(Resource):
          try:
             # setting default page and cohort listing per page
              page = int(request.args.get('page',1))
-             per_page = int(request.args.get('per_page',10))
+             per_page = int(request.args.get('per_page',20))
 
              per_page = min(per_page, 100)
 
@@ -671,7 +671,7 @@ class ProjectMembers(Resource):
         try:
         
             page = int(request.args.get('page',1))
-            per_page = int(request.args.get('per_page',10))
+            per_page = int(request.args.get('per_page',20))
 
             per_page = min(per_page,100)
 

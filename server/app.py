@@ -32,7 +32,7 @@ app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')  # Loads from .env
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Loads from .env
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')  # Default sender
 
-CORS(app)
+CORS(app, supports_credentials=True)
 migrate = Migrate(app, db)
 db.init_app(app)
 bcrypt.init_app(app)
@@ -208,14 +208,26 @@ class Login(Resource):
 
             user = User.query.filter(User.email == email).first()
 
+            if not user:
+                return {'error': 'User not found'}, 401
+
             if not user or not user.check_password_hash(password):
                 return {'error':'Invalid credentials'},401
             
-            # if not user.is_verified:
-            #     return {'error':"User is not verified. Please check you email for the verification code"},400
+            if not user.is_verified:
+                return {'error':"User is not verified. Please check you email for the verification code"},400
+            
             
             session['user_id'] = user.id
-            return {'message': 'Logged in successfully'},200
+            return {
+                    'message': 'Logged in successfully', 
+                    'user': {
+                        'name':user.username,
+                        'email': user.email, 
+                        'is_verified': user.is_verified, 
+                        'role':user.role
+                        } 
+                    },200
         
         
 api.add_resource(Login, '/login', endpoint='login')

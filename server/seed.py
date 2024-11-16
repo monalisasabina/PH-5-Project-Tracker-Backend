@@ -98,22 +98,24 @@ def seed_data():
         
         # Create project members
         print('\nADDING PROJECT MEMBERS...')
+
+        allowed_roles =['Figma designer', 'react developer','backend developer', 'Quality control']
         users = User.query.all()
 
         for project in projects:  # Assuming projects is a list of created projects
-           for _ in range(5):  # Add 3 members to each project (adjust number as needed)
+           for _ in range(5):  # Add 5 members to each project (adjust number as needed)
                user = random.choice(users)  # Select a random user from the list of users
                member_name = fake.name()
-               member_role = fake.job()
+               member_role = random.choice(allowed_roles)
 
                # Create a new project member
                project_member = ProjectMember(
                     name=member_name,
-                    project_id=project.id,  # Link to the project
+                    project_id=project.id,                 # Link to the project
                     joined_at=datetime.now(timezone.utc),
-                    role=member_role,
-                    user_id=user.id,  # Make sure to assign a valid user_id
-                    cohort_id=random.choice(cohorts).id  # Assign a random cohort if needed
+                    role=member_role,                      #Assign the randomly selected role
+                    user_id=user.id,                       # Make sure to assign a valid user_id
+                    cohort_id=random.choice(cohorts).id    # Assign a random cohort if needed
                )
 
                db.session.add(project_member)

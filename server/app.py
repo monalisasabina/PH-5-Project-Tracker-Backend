@@ -53,6 +53,14 @@ class Home(Resource):
                    "/projects",
                    "/cohorts",
                    "/projectmembers",
+                   "/verify"
+                   "/signup",
+                   "/login",
+                   "/logout",
+                   "/check_session"
+
+                  
+                   
                ]
           },200
 

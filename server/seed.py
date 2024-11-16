@@ -100,6 +100,7 @@ def seed_data():
         print('\nADDING PROJECT MEMBERS...')
 
         allowed_roles =['Figma designer', 'react developer','backend developer', 'Quality control']
+        
         users = User.query.all()
 
         for project in projects:  # Assuming projects is a list of created projects
